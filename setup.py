@@ -5,7 +5,7 @@ setup(
     name='httpie-next',
     description='Use (unofficial-experimental) urllib3[h2n3] alongside HTTPie.',
     long_description=open('README.md').read(),
-    long_description_content_type='application/markdown',
+    long_description_content_type='text/markdown',
     version='1.0.0',
     author='Ahmed TAHRI',
     author_email='ahmed.tahri@cloudnursery.dev',
