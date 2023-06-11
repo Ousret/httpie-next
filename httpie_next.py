@@ -3,6 +3,7 @@ Use (unofficial-experimental) urllib3[h2n3] alongside HTTPie.
 """
 import json
 import os.path
+from os import makedirs
 
 from httpie.plugins import TransportPlugin
 from httpie.config import DEFAULT_CONFIG_DIR
@@ -24,7 +25,7 @@ class QuicCapabilityCache(
     def __init__(self):
         self._cache = dict()
         if not os.path.exists(DEFAULT_CONFIG_DIR):
-            os.mkdir(DEFAULT_CONFIG_DIR, exist_ok=True)
+            makedirs(DEFAULT_CONFIG_DIR, exist_ok=True)
         with open(os.path.join(DEFAULT_CONFIG_DIR, "httpie.quic.json"), "r+") as fp:
             self._cache = json.load(fp)
 
