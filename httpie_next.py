@@ -17,7 +17,9 @@ __author__ = 'Ahmed TAHRI'
 __licence__ = 'MIT'
 
 
-class QuicCapabilityCache:
+class QuicCapabilityCache(
+    typing.MutableMapping[typing.Tuple[str, int], typing.Optional[typing.Tuple[str, int]]]
+):
 
     def __init__(self):
         self._cache = dict()
@@ -49,18 +51,21 @@ class QuicCapabilityCache:
         key: str = f"QUIC_{key[0]}_{key[1]}"
         if key in self._cache:
             del self._cache[key]
+            self.save()
 
     def __len__(self):
         return len(self._cache)
 
     def __iter__(self):
-        ...
+        yield from self._cache.items()
+
 
 class HTTPAdapterWithQuicCache(HTTPAdapter):
 
     def __init__(self):
         super().__init__()
 
+        # remove previously created PM (from super call)
         del self.poolmanager
 
         self.poolmanager = PoolManager(
@@ -69,7 +74,6 @@ class HTTPAdapterWithQuicCache(HTTPAdapter):
             maxsize=self._pool_maxsize,
             block=self._pool_block,
         )
-
 
 
 class HTTPNextTransportPlugin(TransportPlugin):

@@ -1,12 +1,11 @@
 HTTPie Extra!
 -------------
 
-This plugin brought experimental support for urllib3\[h2n3\] (not released, not planed for merge, not planned to, not eligible to support!)
-
+This plugin brings experimental support for urllib3\[h2n3\] (not released, not planned for merge, not planned to, not eligible for support!)
 Use this plugin with caution.
 
 ```shell
-pip install httpie-next -U
+pip install git+https://github.com/Ousret/httpie-next -U
 
 # run twice! first is http/2 and second should be http/3
 https GET www.cloudflare.com/img/nav/globe-lang-select-dark.svg
