@@ -26,8 +26,9 @@ class QuicCapabilityCache(
         self._cache = dict()
         if not os.path.exists(DEFAULT_CONFIG_DIR):
             makedirs(DEFAULT_CONFIG_DIR, exist_ok=True)
-        with open(os.path.join(DEFAULT_CONFIG_DIR, "httpie.quic.json"), "r+") as fp:
-            self._cache = json.load(fp)
+        if os.path.exists(os.path.join(DEFAULT_CONFIG_DIR, "httpie.quic.json")):
+            with open(os.path.join(DEFAULT_CONFIG_DIR, "httpie.quic.json"), "r") as fp:
+                self._cache = json.load(fp)
 
     def save(self):
         with open(os.path.join(DEFAULT_CONFIG_DIR, "httpie.quic.json"), "w+") as fp:
