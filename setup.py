@@ -6,7 +6,7 @@ setup(
     description='Use (unofficial-experimental) urllib3[h2n3] alongside HTTPie.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    version='1.0.0',
+    version='1.0.1',
     author='Ahmed TAHRI',
     author_email='ahmed.tahri@cloudnursery.dev',
     license='MIT',
