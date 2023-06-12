@@ -7,15 +7,53 @@ from os import makedirs
 
 from httpie.plugins import TransportPlugin
 from httpie.config import DEFAULT_CONFIG_DIR
+from httpie import __version__ as httpie_version
 from requests.adapters import HTTPAdapter
 from urllib3 import PoolManager
 
 import typing
 
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Ahmed TAHRI'
 __licence__ = 'MIT'
+
+try:
+    httpie_version_tuple = tuple([int(e) for e in httpie_version.split(".")])
+except:
+    httpie_version_tuple = None
+
+# provisional patch
+if httpie_version_tuple is not None and httpie_version_tuple <= (3, 2, 2):
+    import httpie.models
+
+    @property
+    def patched_version(self) -> str:
+        """
+        Return the HTTP version used by the server, e.g. '1.1'.
+
+        Assume HTTP/1.1 if version is not available.
+        """
+        mapping = {
+            9: '0.9',
+            10: '1.0',
+            11: '1.1',
+            20: '2',
+            30: '3',
+        }
+        fallback = 11
+        version = None
+        try:
+            raw = self._orig.raw
+            if getattr(raw, '_original_response', None):
+                version = raw._original_response.version
+            else:
+                version = raw.version
+        except AttributeError:
+            pass
+        return mapping[version or fallback]
+
+    setattr(httpie.models.HTTPResponse, "version", patched_version)
 
 
 class QuicCapabilityCache(
