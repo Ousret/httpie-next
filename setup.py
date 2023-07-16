@@ -3,10 +3,10 @@ from setuptools import setup
 
 setup(
     name='httpie-next',
-    description='Use (unofficial-experimental) urllib3[h2n3] alongside HTTPie.',
+    description='Use urllib3.future alongside HTTPie.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    version='1.0.1',
+    version='1.1.0',
     author='Ahmed TAHRI',
     author_email='ahmed.tahri@cloudnursery.dev',
     license='MIT',
@@ -20,7 +20,7 @@ setup(
     },
     install_requires=[
         'httpie>=3.0',
-        'urllib3[h2n3] @ git+https://github.com/Ousret/urllib3.git@experimental-h2n3'
+        'urllib3.future>=2.0.931'
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -29,6 +29,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Environment :: Plugins',
         'License :: OSI Approved :: MIT License',
         'Topic :: Internet :: WWW/HTTP',
