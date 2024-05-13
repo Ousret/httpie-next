@@ -12,6 +12,5 @@ https GET www.cloudflare.com/img/nav/globe-lang-select-dark.svg
 ```
 
 When a server yield its QUIC support, it is saved in the default HTTPie configuration directory.
-Installing this in your environment will alter basically everything that relies on urllib3.
 
-Your feedback is appreciated so that we can prepare a safe (and actually reviewable / merge-able feature) in urllib3.
+⚠️ This project is deprecated and is unmaintained. See https://github.com/httpie/cli/pull/1531 for a viable alternative.
